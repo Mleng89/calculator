@@ -39,6 +39,13 @@ function handleSymbol(symbol) {
 			buffer = runningTotal;
 			runningTotal = 0;
 			break;
+		case '←':
+			if (buffer.length === 1) {
+				buffer = '0';
+			} else {
+				buffer = buffer.substring(0, buffer.length - 1);
+			}
+			break;
 		case '+':
 		case '-':
 		case 'x':
@@ -64,6 +71,7 @@ function handleMath(symbol) {
 	previousOperator = symbol;
 	buffer = '0';
 }
+
 function flushOperation(intBuffer) {
 	if (previousOperator === '+') {
 		runningTotal += intBuffer;
